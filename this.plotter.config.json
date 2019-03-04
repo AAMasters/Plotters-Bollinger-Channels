@@ -1,0 +1,33 @@
+{
+  "displayName": "Plotters Bollinger Channels",
+  "codeName": "PlottersBollingerChannels",
+  "devTeam": "AAMasters",
+  "modules": [
+    {
+      "codeName": "BollingerChannels",
+      "moduleName": "BollingerChannels",
+      "description": "Plots Bollinger Channels.",
+      "profilePicture": "BollingerChannels.png",
+      "panels": [
+        {
+          "codeName": "ChannelPanel",
+          "moduleName": "ChannelPanel",
+          "event": "Current Channel Changed"
+        }
+      ]
+    },
+    {
+      "codeName": "BollingerSubChannels",
+      "moduleName": "BollingerSubChannels",
+      "description": "Plots Bollinger Sub-Channels.",
+      "profilePicture": "BollingerSubChannels.png",
+      "panels": [
+        {
+          "codeName": "SubChannelPanel",
+          "moduleName": "SubChannelPanel",
+          "event": "Current Sub-Channel Changed"
+        }
+      ]
+    }
+  ]
+}
