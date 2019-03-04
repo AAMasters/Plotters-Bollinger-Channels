@@ -85,11 +85,19 @@ function newAAMastersPlottersBollingerChannelsBollingerChannelsChannelPanel () {
         printLabel('Periods', X_AXIS, frameTitleHeight + frameBodyHeight * 0.15, '1');
         printLabel(currentChannel.innerChannel.periodCount, X_AXIS, frameTitleHeight + frameBodyHeight * 0.20, '0.50');
 
+        let fixedValue = '';
+
+        fixedValue = currentChannel.innerChannel.firstMovingAverage;
+        if (fixedValue !== undefined) { fixedValue = fixedValue.toFixed(2); } else { fixedValue = ''; }
+
         printLabel('Initial Moving Average', X_AXIS, frameTitleHeight + frameBodyHeight * 0.25, '1');
-        printLabel((currentChannel.innerChannel.firstMovingAverage).toFixed(2), X_AXIS, frameTitleHeight + frameBodyHeight * 0.30, '0.50');
+        printLabel(fixedValue, X_AXIS, frameTitleHeight + frameBodyHeight * 0.30, '0.50');
+
+        fixedValue = currentChannel.innerChannel.lastMovingAverage;
+        if (fixedValue !== undefined) { fixedValue = fixedValue.toFixed(2); } else { fixedValue = '';}
 
         printLabel('Final Moving Average', X_AXIS, frameTitleHeight + frameBodyHeight * 0.35, '1');
-        printLabel((currentChannel.innerChannel.lastMovingAverage).toFixed(2), X_AXIS, frameTitleHeight + frameBodyHeight * 0.40, '0.50');
+        printLabel(fixedValue, X_AXIS, frameTitleHeight + frameBodyHeight * 0.40, '0.50');
 
         function printLabel(labelToPrint, x, y, opacity) {
 
