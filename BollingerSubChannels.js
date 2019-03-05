@@ -595,7 +595,7 @@
 
                     browserCanvasContext.moveTo(channelPoint1.x, channelPoint1.y);
                     browserCanvasContext.lineTo(channelPoint2.x, channelPoint2.y);
-                    browserCanvasContext.moveTo(channelPoint3.x, channelPoint3.y);
+                    browserCanvasContext.lineTo(channelPoint3.x, channelPoint3.y);
                     browserCanvasContext.lineTo(channelPoint4.x, channelPoint4.y);
 
                     browserCanvasContext.closePath();

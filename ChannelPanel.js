@@ -83,7 +83,7 @@ function newAAMastersPlottersBollingerChannelsBollingerChannelsChannelPanel () {
         printLabel(currentChannel.innerChannel.direction, X_AXIS, frameTitleHeight + frameBodyHeight * 0.10, '0.50');
 
         printLabel('Periods', X_AXIS, frameTitleHeight + frameBodyHeight * 0.15, '1');
-        printLabel(currentChannel.innerChannel.periodCount, X_AXIS, frameTitleHeight + frameBodyHeight * 0.20, '0.50');
+        printLabel(currentChannel.innerChannel.period, X_AXIS, frameTitleHeight + frameBodyHeight * 0.20, '0.50');
 
         let fixedValue = '';
 
