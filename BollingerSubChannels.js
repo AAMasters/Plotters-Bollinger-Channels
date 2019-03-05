@@ -1,4 +1,4 @@
-﻿function newAAMastersPlottersBollingerChannelsBollingerSubChannels () {
+﻿function newAAMastersPlottersBollingerChannelsBollingerSubChannels() {
 
 
     const MODULE_NAME = "AAMasters Plotters Bollinger Sub-Channels";
@@ -292,7 +292,7 @@
                             end: undefined,
                             direction: undefined,
                             slope: undefined,
-                            periodCount: 0,
+                            period: 0,
                             firstMovingAverage: 0,
                             lastMovingAverage: 0,
                             firstDeviation: 0,
@@ -305,7 +305,7 @@
                         channel.direction = dailyFile[i][2];
                         channel.slope = dailyFile[i][3];
 
-                        channel.periodCount = dailyFile[i][4];
+                        channel.period = dailyFile[i][4];
 
                         channel.firstMovingAverage = dailyFile[i][5];
                         channel.lastMovingAverage = dailyFile[i][6];
@@ -380,7 +380,7 @@
                     end: undefined,
                     direction: undefined,
                     slope: undefined,
-                    periodCount: 0,
+                    period: 0,
                     firstMovingAverage: 0,
                     lastMovingAverage: 0,
                     firstDeviation: 0,
@@ -393,7 +393,7 @@
                 channel.direction = marketFile[i][2];
                 channel.slope = marketFile[i][3];
 
-                channel.periodCount = marketFile[i][4];
+                channel.period = marketFile[i][4];
 
                 channel.firstMovingAverage = marketFile[i][5];
                 channel.lastMovingAverage = marketFile[i][6];
@@ -467,7 +467,7 @@
             let channel = {
                 direction: '',
                 slope: '',
-                periodCount: ''
+                period: ''
             }
 
             let currentChannel = {
@@ -591,6 +591,15 @@
 
                     browserCanvasContext.fill();
 
+                    browserCanvasContext.beginPath();
+
+                    browserCanvasContext.moveTo(channelPoint1.x, channelPoint1.y);
+                    browserCanvasContext.lineTo(channelPoint2.x, channelPoint2.y);
+                    browserCanvasContext.moveTo(channelPoint3.x, channelPoint3.y);
+                    browserCanvasContext.lineTo(channelPoint4.x, channelPoint4.y);
+
+                    browserCanvasContext.closePath();
+
                     browserCanvasContext.lineWidth = 1;
                     browserCanvasContext.stroke();
                 }
@@ -651,6 +660,7 @@
         }
     }
 }
+
 
 
 

@@ -291,7 +291,7 @@
                             begin: undefined,
                             end: undefined,
                             direction: undefined,
-                            periodCount: 0,
+                            period: 0,
                             firstMovingAverage: 0,
                             lastMovingAverage: 0,
                             firstDeviation: 0,
@@ -303,7 +303,7 @@
 
                         channel.direction = dailyFile[i][2];
 
-                        channel.periodCount = dailyFile[i][3];
+                        channel.period = dailyFile[i][3];
 
                         channel.firstMovingAverage = dailyFile[i][4];
                         channel.lastMovingAverage = dailyFile[i][5];
@@ -377,7 +377,7 @@
                     begin: undefined,
                     end: undefined,
                     direction: undefined,
-                    periodCount: 0,
+                    period: 0,
                     firstMovingAverage: 0,
                     lastMovingAverage: 0,
                     firstDeviation: 0,
@@ -389,7 +389,7 @@
 
                 channel.direction = marketFile[i][2];
 
-                channel.periodCount = marketFile[i][3];
+                channel.period = marketFile[i][3];
 
                 channel.firstMovingAverage = marketFile[i][4];
                 channel.lastMovingAverage = marketFile[i][5];
@@ -462,7 +462,7 @@
 
             let channel = {
                 direction: '',
-                periodCount: ''
+                period: ''
             }
 
             let currentChannel = {
@@ -531,11 +531,6 @@
                     browserCanvasContext.closePath();
 
                     let opacity = '0.25';
-                    let lineWidth = 0.25;
-
-                    if (channel.direction === 'Side') { browserCanvasContext.strokeStyle = 'rgba(' + UI_COLOR.DARK + ', ' + opacity + ')'; }
-                    if (channel.direction === 'Up') { browserCanvasContext.strokeStyle = 'rgba(' + UI_COLOR.PATINATED_TURQUOISE + ', ' + opacity + ')'; }
-                    if (channel.direction === 'Down') { browserCanvasContext.strokeStyle = 'rgba(' + UI_COLOR.RED + ', ' + opacity + ')'; }
 
                     if (channel.direction === 'Side') { browserCanvasContext.fillStyle = 'rgba(' + UI_COLOR.LIGHT + ', ' + opacity + ')'; }
                     if (channel.direction === 'Up') { browserCanvasContext.fillStyle = 'rgba(' + UI_COLOR.GREEN + ', ' + opacity + ')'; }
@@ -556,6 +551,19 @@
                     }
 
                     browserCanvasContext.fill();
+
+                    browserCanvasContext.beginPath();
+
+                    browserCanvasContext.moveTo(channelPoint1.x, channelPoint1.y);
+                    browserCanvasContext.lineTo(channelPoint2.x, channelPoint2.y);
+                    browserCanvasContext.moveTo(channelPoint3.x, channelPoint3.y);
+                    browserCanvasContext.lineTo(channelPoint4.x, channelPoint4.y);
+
+                    browserCanvasContext.closePath();
+
+                    if (channel.direction === 'Side') { browserCanvasContext.strokeStyle = 'rgba(' + UI_COLOR.DARK + ', ' + opacity + ')'; }
+                    if (channel.direction === 'Up') { browserCanvasContext.strokeStyle = 'rgba(' + UI_COLOR.PATINATED_TURQUOISE + ', ' + opacity + ')'; }
+                    if (channel.direction === 'Down') { browserCanvasContext.strokeStyle = 'rgba(' + UI_COLOR.RED + ', ' + opacity + ')'; }
 
                     browserCanvasContext.lineWidth = 1;
                     browserCanvasContext.stroke();
@@ -617,6 +625,7 @@
         }
     }
 }
+
 
 
 
