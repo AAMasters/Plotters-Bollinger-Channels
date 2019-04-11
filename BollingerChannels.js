@@ -64,6 +64,7 @@
             viewPort.eventHandler.stopListening("Offset Changed", onOffsetChanged);
             marketFiles.eventHandler.stopListening("Files Updated", onFilesUpdated);
             canvas.eventHandler.stopListening("Drag Finished", onDragFinished);
+            thisObject.container.eventHandler.stopListening('Dimmensions Changed')
 
             /* Destroyd References */
 
@@ -78,7 +79,7 @@
 
         } catch (err) {
 
-            if (ERROR_LOG === true) { logger.write("[ERROR] finalize -> err.message = " + err.message); }
+            if (ERROR_LOG === true) { logger.write("[ERROR] finalize -> err = " + err.stack); }
         }
     }
 
@@ -118,6 +119,11 @@
 
             recalculate();
 
+            thisObject.container.eventHandler.listenToEvent('Dimmensions Changed', function () {
+                recalculateScale()
+                recalculate();
+            })
+
             callBackFunction();
 
         } catch (err) {
@@ -144,7 +150,7 @@
 
         } catch (err) {
 
-            if (ERROR_LOG === true) { logger.write("[ERROR] onFilesUpdated -> err.message = " + err.message); }
+            if (ERROR_LOG === true) { logger.write("[ERROR] onFilesUpdated -> err = " + err.stack); }
         }
     }
 
@@ -489,7 +495,8 @@
 
         try {
 
-            if (INTENSIVE_LOG === true) { logger.write("[INFO] plotChart -> Entering function."); }
+            let userPosition = getUserPosition()
+            let userPositionDate = userPosition.point.x
 
             /* Clean the pannel at places where there is no channel. */
 
@@ -569,18 +576,13 @@
                     if (channel.direction === 'Up') { browserCanvasContext.fillStyle = 'rgba(' + UI_COLOR.GREEN + ', ' + opacity + ')'; }
                     if (channel.direction === 'Down') { browserCanvasContext.fillStyle = 'rgba(' + UI_COLOR.RUSTED_RED + ', ' + opacity + ')'; }
 
-                    if (datetime !== undefined) {
+                    if (userPositionDate >= channel.begin && userPositionDate <= channel.end) {
+                        browserCanvasContext.fillStyle = 'rgba(' + UI_COLOR.TITANIUM_YELLOW + ', 0.1)'; // Current channel accroding to time
 
-                        let dateValue = datetime.valueOf();
-                        if (dateValue >= channel.begin && dateValue <= channel.end) {
-                            browserCanvasContext.fillStyle = 'rgba(' + UI_COLOR.TITANIUM_YELLOW + ', 0.1)'; // Current channel accroding to time
-
-                            let currentChannel = {
-                                innerChannel: channel
-                            };
-
-                            thisObject.container.eventHandler.raiseEvent("Current Channel Changed", currentChannel);
-                        }
+                        let currentChannel = {
+                            innerChannel: channel
+                        };
+                        thisObject.container.eventHandler.raiseEvent("Current Channel Changed", currentChannel);
                     }
 
                     browserCanvasContext.fill();
