@@ -2,6 +2,7 @@
 function newAAMastersPlottersBollingerChannelsBollingerChannelsChannelPanel () {
 
     var thisObject = {
+        fitFunction: undefined,
         onEventRaised: onEventRaised,
         container: undefined,
         draw: draw,
@@ -17,6 +18,7 @@ function newAAMastersPlottersBollingerChannelsBollingerChannelsChannelPanel () {
     container.frame.containerName = "Current Channel Panel";
 
     let currentChannel;
+    let panelTabButton
 
     return thisObject;
 
@@ -28,25 +30,33 @@ function newAAMastersPlottersBollingerChannelsBollingerChannelsChannelPanel () {
         thisObject.container.frame.position.x = viewPort.visibleArea.topRight.x - thisObject.container.frame.width * 5;
         thisObject.container.frame.position.y = viewPort.visibleArea.bottomLeft.y - thisObject.container.frame.height;
 
+        panelTabButton = newPanelTabButton()
+        panelTabButton.parentContainer = thisObject.container
+        panelTabButton.container.frame.parentFrame = thisObject.container.frame
+        panelTabButton.fitFunction = thisObject.fitFunction
+        panelTabButton.initialize()
     }
 
     function getContainer(point) {
 
-        var container;
+        let container;
 
-        /* First we check if this point is inside this space. */
+        container = panelTabButton.getContainer(point)
+        if (container !== undefined) { return container }
 
-        if (this.container.frame.isThisPointHere(point, true) === true) {
+        if (thisObject.container.frame.isThisPointHere(point, true) === true) {
 
-            return this.container;
+            let checkPoint = {
+                x: point.x,
+                y: point.y
+            }
 
-        } else {
+            checkPoint = thisObject.fitFunction(checkPoint)
 
-            /* This point does not belong to this space. */
-
-            return undefined;
+            if (point.x === checkPoint.x && point.y === checkPoint.y) {
+                return thisObject.container;
+            }
         }
-
     }
 
 
@@ -59,9 +69,11 @@ function newAAMastersPlottersBollingerChannelsBollingerChannelsChannelPanel () {
 
     function draw() {
 
-        this.container.frame.draw(false, false, true);
+        thisObject.container.frame.draw(false, false, true, thisObject.fitFunction);
 
         plotCurrentChannelInfo();
+
+        panelTabButton.draw()
 
     }
 
@@ -116,6 +128,7 @@ function newAAMastersPlottersBollingerChannelsBollingerChannelsChannelPanel () {
             };
 
             labelPoint = thisObject.container.frame.frameThisPoint(labelPoint);
+            labelPoint = thisObject.fitFunction(labelPoint)
 
             browserCanvasContext.fillStyle = 'rgba(' + UI_COLOR.DARK + ', ' + opacity + ')';
             browserCanvasContext.fillText(label, labelPoint.x, labelPoint.y);
