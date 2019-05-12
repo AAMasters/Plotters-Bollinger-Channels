@@ -21,6 +21,7 @@
     <Compile Include="BollingerSubChannels.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ChannelPanel.js" />
     <Compile Include="SubChannelPanel.js">
       <SubType>Code</SubType>
     </Compile>

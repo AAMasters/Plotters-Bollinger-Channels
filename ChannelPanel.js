@@ -1,7 +1,7 @@
 ﻿
 function newAAMastersPlottersBollingerChannelsBollingerChannelsChannelPanel () {
 
-    var thisObject = {
+    let thisObject = {
         fitFunction: undefined,
         onEventRaised: onEventRaised,
         container: undefined,
@@ -10,7 +10,7 @@ function newAAMastersPlottersBollingerChannelsBollingerChannelsChannelPanel () {
         initialize: initialize
     };
 
-    var container = newContainer();
+    let container = newContainer();
     container.initialize();
     thisObject.container = container;
 

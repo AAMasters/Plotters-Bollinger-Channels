@@ -492,7 +492,7 @@
 
             if (channels.length > 0) {
 
-                for (var i = 0; i < channels.length; i++) {
+                for (let i = 0; i < channels.length; i++) {
 
                     channel = channels[i];
 
