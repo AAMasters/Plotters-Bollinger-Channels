@@ -1,7 +1,7 @@
 ﻿
 function newAAMastersPlottersBollingerChannelsBollingerSubChannelsSubChannelPanel() {
 
-    var thisObject = {
+    let thisObject = {
         onEventRaised: onEventRaised,
         container: undefined,
         draw: draw,
@@ -9,7 +9,7 @@ function newAAMastersPlottersBollingerChannelsBollingerSubChannelsSubChannelPane
         initialize: initialize
     };
 
-    var container = newContainer();
+    let container = newContainer();
     container.initialize();
     thisObject.container = container;
 
@@ -32,7 +32,7 @@ function newAAMastersPlottersBollingerChannelsBollingerSubChannelsSubChannelPane
 
     function getContainer(point) {
 
-        var container;
+        let container;
 
         /* First we check if this point is inside this space. */
 
