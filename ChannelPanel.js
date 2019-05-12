@@ -14,8 +14,8 @@ function newAAMastersPlottersBollingerChannelsBollingerChannelsChannelPanel () {
     container.initialize();
     thisObject.container = container;
 
-    container.displacement.containerName = "Current Channel Panel";
-    container.frame.containerName = "Current Channel Panel";
+    container.displacement.containerName = "Current Channel";
+    container.frame.containerName = "Current Channel";
 
     let currentChannel;
     let panelTabButton
