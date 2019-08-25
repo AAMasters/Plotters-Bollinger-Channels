@@ -580,6 +580,7 @@
                     if (channel.direction === 'Down') { browserCanvasContext.strokeStyle = 'rgba(' + UI_COLOR.RED + ', ' + opacity + ')'; }
 
                     browserCanvasContext.lineWidth = 1;
+                    browserCanvasContext.setLineDash([0, 0])
                     browserCanvasContext.stroke();
                 }
             }
@@ -633,6 +634,7 @@
         }
     }
 }
+
 
 
 
