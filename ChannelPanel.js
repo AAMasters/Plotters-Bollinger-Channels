@@ -87,7 +87,12 @@ function newAAMastersPlottersBollingerChannelsBollingerChannelsChannelPanel () {
         const Y_AXIS = frameTitleHeight + frameBodyHeight / 2;
 
         if (currentChannel === undefined) { return; }
-        if (currentChannel.innerChannel === undefined) { return; }
+        if (currentChannel.innerChannel === undefined) {
+            currentChannel.innerChannel = {
+                direction: '',
+                period: ''
+            }
+        }
 
         let y;
 
